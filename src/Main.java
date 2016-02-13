@@ -12,11 +12,10 @@ public class Main {
 		int caseNumber = 1;
 
 		while (sc.hasNextLine()) {
-			String line = sc.nextLine();
-			String[] numbers = line.split(" ");
+			String[] numbers = sc.nextLine().split(" ");
 			Arrays.sort(numbers);
 
-			System.out.format("Case %s: %s%n", caseNumber, Integer.parseInt(numbers[1]));
+			System.out.format("Case %s: %s%n", caseNumber, numbers[1]);
 			caseNumber++;
 		}
 	}
