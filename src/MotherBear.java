@@ -8,16 +8,24 @@ public class MotherBear {
 		sc = new Scanner(System.in);
 
 		while (sc.hasNextLine()) {
-			String frase = sc.nextLine().replaceAll(" ", "").replaceAll("[!.,?]", "").toLowerCase();
+			String value = sc.nextLine();
+			if (value.equals("DONE"))
+				break;
+			
+			String frase = value.replaceAll(" ", "").replaceAll("[!.,?]", "").toLowerCase();
+			
 
 			String palindromes = "";
 
-			for (int j = frase.length() -1; j >= 0; j--) {
+			for (int j = frase.length() - 1; j >= 0; j--) {
 				palindromes += frase.toCharArray()[j];
 			}
-			
-			if (frase.equals(palindromes)) System.out.println("You won't be eaten!");
-			else System.out.println("Uh oh..");
+
+
+			if (frase.equals(palindromes))
+				System.out.println("You won't be eaten!");
+			else
+				System.out.println("Uh oh..");
 		}
 	}
 }
