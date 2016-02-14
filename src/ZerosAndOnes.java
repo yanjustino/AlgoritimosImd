@@ -2,42 +2,40 @@ import java.util.Scanner;
 
 public class ZerosAndOnes {
 	private static Scanner sc;
+	private static String firstLine;
+	private static int queryNumber = 0;
+	private static int caseNumbers = 1;
 
 	public static void main(String[] args) {
 
 		sc = new Scanner(System.in);
-		String firstLine = "";
-		int queryNumber = 0;
-		int caseNumbers = 1;
-
+		
 		while (sc.hasNextLine()) {
-
 			firstLine = sc.nextLine();
-			char[] arrayfirstLine = firstLine.toCharArray();
-			int[] arrayline = new int[firstLine.length()];
 
-			if (!firstLine.equals("")) {
-				System.out.println("Case " + caseNumbers + ":");
-				caseNumbers++;
-			}
-			
+			if (firstLine.isEmpty())
+				break;
+
+			System.out.println("Case " + caseNumbers + ":");
+			caseNumbers++;
+
+			char[] arr = firstLine.toCharArray();
+			int[] aux = new int[firstLine.length()];
+
 			int soma1 = 0;
 			int soma0 = 0;
-			
-			for (int i = 0; i < arrayfirstLine.length; i++) {
-				int valor = Integer.parseInt(String.valueOf(arrayfirstLine[i]));
-				
-				if(valor == 0)
-				{
+
+			for (int i = 0; i < arr.length; i++) {
+				int valor = Integer.parseInt(String.valueOf(arr[i]));
+
+				if (valor == 0) {
 					soma0 += 1;
-					arrayline[i] = soma0;
+					aux[i] = soma0;
 					soma1 = 0;
-				}
-				else
-				{
+				} else {
 					soma1 += 1;
-					arrayline[i] = soma1;
-					soma0 = 0;					
+					aux[i] = soma1;
+					soma0 = 0;
 				}
 			}
 
@@ -51,24 +49,19 @@ public class ZerosAndOnes {
 
 				int quant = 0;
 				int total = 0;
-				if (position1 > position2)
-				{
+				if (position1 > position2) {
 					quant = position1 - position2;
-					total = arrayline[position1] - arrayline[position2];
-				}
-				else
-				{
+					total = aux[position1] - aux[position2];
+				} else {
 					quant = position2 - position1;
-					total = arrayline[position2] - arrayline[position1];
+					total = aux[position2] - aux[position1];
 				}
-				
+
 				if (total == quant)
 					System.out.println("Yes");
 				else
 					System.out.println("No");
-
 			}
-
 		}
 	}
 }
