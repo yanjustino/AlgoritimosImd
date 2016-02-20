@@ -11,20 +11,18 @@ public class Rails {
 
 			String line = sc.nextLine();
 
-			if (!finishTestOrFile(line)) {
-				int numberOfCoaches = Integer.parseInt(line);
+			int numberOfCoaches = Integer.parseInt(line);
 
-				while (true) {
-					line = sc.nextLine();
+			while (true) {
+				line = sc.nextLine();
 
-					if (finishTestOrFile(line)) {
-						System.out.println();
-						break;
-					}
+				if (finishTestOrFile(line))
+					break;
 
-					printIfItIsPossibleMarshalTheCoaches(getStationAfterReorganized(line, numberOfCoaches));
-				}
+				printIfIsPossibleMarshalTheCoaches(getStationAfterReorganized(line, numberOfCoaches));
 			}
+
+			System.out.println();
 		}
 	}
 
@@ -37,20 +35,12 @@ public class Rails {
 
 		int pointer = 0;
 		Stack<Integer> station = new Stack<Integer>();
+
 		for (int current = 1; current <= numberOfCoaches; ++current) {
 			pointer = tryMarshal(coaches, pointer, station, current);
 		}
 
 		return station;
-	}
-
-	private static int tryMarshal(int[] coaches, int pointer, Stack<Integer> station, int current) {
-		station.push(current);
-		while (!station.isEmpty() && station.peek() == coaches[pointer]) {
-			station.pop();
-			++pointer;
-		}
-		return pointer;
 	}
 
 	private static int[] getCoaches(String[] coachesLabels, int numberOfCoaches) {
@@ -62,7 +52,23 @@ public class Rails {
 		return coaches;
 	}
 
-	private static void printIfItIsPossibleMarshalTheCoaches(Stack<Integer> station) {
+	private static int tryMarshal(int[] coaches, int pointer, Stack<Integer> station, int current) {
+		station.push(current);
+
+		/*
+		 * Enquanto a estação não estiver vazia e se o vagão em cima da pilha é
+		 * igual indíce do ponteiro, retire o vagão da pilha e atualize o
+		 * ponteiro
+		 */
+		while (!station.isEmpty() && station.peek() == coaches[pointer]) {
+			station.pop();
+			++pointer;
+		}
+
+		return pointer;
+	}
+
+	private static void printIfIsPossibleMarshalTheCoaches(Stack<Integer> station) {
 		if (station.isEmpty())
 			System.out.println("Yes");
 		else
