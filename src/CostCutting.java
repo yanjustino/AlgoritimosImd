@@ -10,7 +10,7 @@ public class CostCutting {
 
 		sc.nextLine();
 		int caseNumber = 1;
-
+		
 		while (sc.hasNextLine()) {
 			String[] numbers = sc.nextLine().split(" ");
 			Arrays.sort(numbers);
