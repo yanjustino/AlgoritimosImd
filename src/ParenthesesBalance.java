@@ -62,5 +62,4 @@ public class ParenthesesBalance {
 	private static void UpdateCurrentLine() {
 		currentLine = scanner.nextLine();
 	}
-
 }
